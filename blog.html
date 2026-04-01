@@ -3,18 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — Elgin Cafe, Amritsar</title>
-    <meta name="description" content="Stories from Elgin Cafe — behind the menu, the room, and the evenings that made us.">
+    
+    <!-- SEO Core -->
+    <title>Blog — Elgin Cafe, Amritsar | Stories from the Kitchen & Beyond</title>
+    <meta name="description" content="Stories from Elgin Cafe — behind the menu, the room, and the evenings that made us. Read about our wood-fired kitchen, signature cocktails, and the atmosphere.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://elgincafe.in/blog.html">
+    <meta name="theme-color" content="#050F0A">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Elgin Cafe">
+    <meta property="og:title" content="Blog — Elgin Cafe, Amritsar">
+    <meta property="og:description" content="Stories from Elgin Cafe — behind the menu, the room, and the evenings that made us.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="https://elgincafe.in/blog.html">
+    <meta property="og:locale" content="en_IN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Elgin Cafe, Amritsar">
+    <meta name="twitter:description" content="Stories from the kitchen & beyond.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+    
+    <!-- AEO: BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Elgin Cafe", "item": "https://elgincafe.in/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://elgincafe.in/blog.html" }
+        ]
+    }
+    </script>
+
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         /* ── Blog Page Specific ── */
@@ -303,7 +335,7 @@
                 <!-- Featured -->
                 <article class="blog-card featured">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Inside Elgin" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Inside Elgin" loading="lazy" width="800" height="500">
                     </div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
@@ -319,7 +351,7 @@
                 <!-- Card 2 -->
                 <article class="blog-card">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=900&auto=format&fit=crop" alt="Wood-fired kitchen" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600&auto=format&fit=crop" alt="Wood-fired kitchen" loading="lazy" width="600" height="450">
                     </div>
                     <div class="blog-card-meta">
                         <span class="blog-tag">The Kitchen</span>
@@ -333,7 +365,7 @@
                 <!-- Card 3 -->
                 <article class="blog-card">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=900&auto=format&fit=crop" alt="Cocktail crafting" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=600&auto=format&fit=crop" alt="Cocktail crafting" loading="lazy" width="600" height="450">
                     </div>
                     <div class="blog-card-meta">
                         <span class="blog-tag">Bar Notes</span>
@@ -347,7 +379,7 @@
                 <!-- Card 4 -->
                 <article class="blog-card">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=900&auto=format&fit=crop" alt="Desserts" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=600&auto=format&fit=crop" alt="Desserts" loading="lazy" width="600" height="450">
                     </div>
                     <div class="blog-card-meta">
                         <span class="blog-tag">Pastry</span>
@@ -361,7 +393,7 @@
                 <!-- Card 5 -->
                 <article class="blog-card">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=900&auto=format&fit=crop" alt="Morning coffee" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600&auto=format&fit=crop" alt="Morning coffee" loading="lazy" width="600" height="450">
                     </div>
                     <div class="blog-card-meta">
                         <span class="blog-tag">Coffee</span>
@@ -375,7 +407,7 @@
                 <!-- Card 6 -->
                 <article class="blog-card">
                     <div class="blog-card-img">
-                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=900&auto=format&fit=crop" alt="Evening at Elgin" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=600&auto=format&fit=crop" alt="Evening at Elgin" loading="lazy" width="600" height="450">
                     </div>
                     <div class="blog-card-meta">
                         <span class="blog-tag">The Room</span>
@@ -416,38 +448,45 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // Hero entrance
-        gsap.from('.blog-hero-left', {
-            y: 60, opacity: 0, duration: 1.3, ease: 'expo.out', delay: 0.2
-        });
-        gsap.from('.blog-hero-right', {
-            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', delay: 0.45
-        });
-
-        // Cards reveal
-        gsap.utils.toArray('.blog-card').forEach((card, i) => {
-            ScrollTrigger.create({
-                trigger: card,
-                start: 'top 85%',
-                once: true,
-                onEnter: () => {
-                    gsap.to(card, {
-                        y: 0, opacity: 1,
-                        duration: 0.9,
-                        delay: (i % 3) * 0.08,
-                        ease: 'power3.out'
-                    });
-                }
+    <!-- Scripts deferred to not block first paint -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero entrance
+            gsap.from('.blog-hero-left', {
+                y: 60, opacity: 0, duration: 1.3, ease: 'expo.out', delay: 0.2
             });
-        });
+            gsap.from('.blog-hero-right', {
+                y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', delay: 0.45
+            });
 
-        // CTA band
-        gsap.from('.blog-cta-band', {
-            scrollTrigger: { trigger: '.blog-cta-band', start: 'top 85%' },
-            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out'
+            // Cards reveal
+            gsap.utils.toArray('.blog-card').forEach((card, i) => {
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(card, {
+                            y: 0, opacity: 1,
+                            duration: 0.9,
+                            delay: (i % 3) * 0.08,
+                            ease: 'power3.out'
+                        });
+                    }
+                });
+            });
+
+            // CTA band
+            gsap.from('.blog-cta-band', {
+                scrollTrigger: { trigger: '.blog-cta-band', start: 'top 85%' },
+                y: 40, opacity: 0, duration: 1.1, ease: 'expo.out'
+            });
         });
     </script>
 </body>
 </html>
+

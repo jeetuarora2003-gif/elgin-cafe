@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://elgincafe.in/sitemap.xml
+
+# Crawl-delay (optional, be kind to the server)
+Crawl-delay: 1
+
+# Block admin/system paths
+Disallow: /cdn-cgi/

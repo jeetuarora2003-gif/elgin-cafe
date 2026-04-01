@@ -3,190 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu | Elgin Cafe</title>
+    <title>Menu — Elgin Cafe, Amritsar</title>
+    <meta name="description" content="The Elgin Cafe menu. Classic Italian meets rustic Amritsar — wood-fired pizzas, signature cocktails, artisan desserts.">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Smooth Scrolling & GSAP -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        .menu-page-header {
-            padding: 10rem 5% 4rem;
-            text-align: center;
+        /* ── Menu Page Specific ── */
+        .menu-page {
             background-color: var(--clr-bg);
+            min-height: 100vh;
         }
-        
-        .menu-gallery {
-            max-width: 1400px;
+
+        .menu-hero {
+            padding: 12rem var(--space-container) 5rem;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 0 5% 6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: end;
+        }
+
+        .menu-hero-left {
+    margin-bottom: 1rem;
+}
+
+        .menu-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .menu-hero-title em {
+            display: block;
+            font-style: italic;
+            color: var(--clr-gold);
+        }
+
+        .menu-hero-right {
+            padding-bottom: 0.75rem;
+        }
+
+        .menu-hero-desc {
+            font-size: 1.0625rem;
+            color: var(--clr-text-muted);
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 42ch;
+        }
+
+        .menu-note {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--clr-text-muted);
+            border-top: 1px solid var(--clr-border-white);
+            padding-top: 1rem;
+            width: 100%;
+        }
+
+        /* ── Menu Divider ── */
+        .menu-divider {
+            border: none;
+            border-top: 1px solid var(--clr-border);
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-container);
+        }
+
+        /* ── Menu Body ── */
+        .menu-body {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-container) 8rem;
+        }
+
+        /* ── Category ── */
+        .menu-category {
+            padding: 5rem 0 3rem;
+            border-bottom: 1px solid var(--clr-border-white);
+        }
+
+        .menu-category:last-child { border-bottom: none; }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .category-name {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--clr-text);
+        }
+
+        .category-desc {
+            font-size: 0.8125rem;
+            color: var(--clr-text-muted);
+            letter-spacing: 0.05em;
+            text-align: right;
+            max-width: 30ch;
+        }
+
+        /* ── Dish Grid ── */
+        .dish-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            background-color: var(--clr-bg);
+            gap: 0;
         }
-        
-        .menu-photo {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 6px;
+
+        .dish {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--clr-border-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
             opacity: 0;
-            transform: translateY(40px);
-            transition: filter 0.5s ease;
+            transform: translateY(20px);
         }
 
-        .menu-photo:hover {
-            filter: brightness(1.15);
+        .dish:nth-child(odd) { padding-right: 4rem; border-right: 1px solid var(--clr-border-white); }
+        .dish:nth-child(even) { padding-left: 4rem; }
+
+        /* Remove bottom border from last two items */
+        .dish:nth-last-child(-n+2) { border-bottom: none; }
+        /* If odd number, last item spans and has no border */
+        .dish:last-child:nth-child(odd) {
+            grid-column: 1;
+            border-bottom: none;
         }
 
-        /* Masonry feel */
-        .menu-photo:nth-child(2n) {
-            height: 600px;
-        }
-        .menu-photo:nth-child(3n) {
-            height: 450px;
+        .dish-info { flex: 1; }
+
+        .dish-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
+            font-weight: 400;
+            color: var(--clr-text);
+            margin-bottom: 0.375rem;
+            line-height: 1.2;
         }
 
+        .dish-desc {
+            font-size: 0.875rem;
+            color: var(--clr-text-muted);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 36ch;
+        }
+
+        .dish-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid var(--clr-border);
+            color: var(--clr-gold);
+            font-weight: 400;
+            white-space: nowrap;
+            align-self: center;
+            font-family: var(--font-body);
+        }
+
+        .dish-price {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--clr-gold);
+            font-weight: 400;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ── CTA Band ── */
+        .menu-cta-band {
+            background-color: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: 3px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .menu-cta-band h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--clr-text);
+            margin-bottom: 1.25rem;
+        }
+
+        .menu-cta-band p {
+            color: var(--clr-text-muted);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .menu-page-header {
-                padding: 6rem 6% 2.5rem;
-            }
-            .menu-gallery {
+            .menu-hero {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 6% 4rem;
+                padding-top: 8rem;
+                gap: 2rem;
             }
-            .menu-photo,
-            .menu-photo:nth-child(2n),
-            .menu-photo:nth-child(3n) {
-                height: 55vw;
-            }
+
+            .menu-hero-desc { max-width: 100%; }
+
+            .dish-grid { grid-template-columns: 1fr; }
+            .dish { padding: 1.75rem 0 !important; padding-right: 0 !important; padding-left: 0 !important; border-right: none !important; }
+            .dish:nth-last-child(-n+2) { border-bottom: 1px solid var(--clr-border-white); }
+            .dish:last-child { border-bottom: none; }
+
+            .category-header { flex-direction: column; gap: 0.75rem; }
+            .category-desc { text-align: left; max-width: 100%; }
+
+            .menu-cta-band { padding: 2.5rem 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
 
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="brand">ELGIN CAFE</a>
-            <div class="menu-btn" id="menu-btn">
+            <a href="index.html" class="brand">
+                <span class="brand-name">ELGIN</span>
+                <span class="brand-sub">CAFE</span>
+            </a>
+            <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
             </div>
             <div class="nav-links">
                 <a href="index.html#about" class="nav-link">The Story</a>
+                <a href="index.html#gallery" class="nav-link">Atmosphere</a>
                 <a href="menu.html" class="nav-link">Full Menu</a>
-                <a href="https://wa.me/917888546281" target="_blank" class="nav-btn">Reserve a Table</a>
+                <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="nav-btn">Reserve</a>
             </div>
         </div>
     </nav>
 
-    <main>
-        <header class="menu-page-header">
-            <span class="section-label">Culinary Offerings</span>
-            <h1 class="section-title">Our <em>Menu</em></h1>
-            <p class="body-text" style="margin: 0 auto;">A collection of classic Italian dishes intertwined with the rustic, authentic flavours of Amritsar.</p>
-        </header>
+    <main class="menu-page">
 
-        <section class="menu-gallery">
-            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1000&auto=format&fit=crop" alt="Restaurant Ambiance" class="menu-photo img-reveal">
-            <img src="https://images.unsplash.com/photo-1621815121303-34e2ab900c25?q=80&w=1000&auto=format&fit=crop" alt="Italian Pizza Selection" class="menu-photo img-reveal">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop" alt="Restaurant Cocktails" class="menu-photo img-reveal">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop" alt="Premium Main Courses" class="menu-photo img-reveal">
-            <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1000&auto=format&fit=crop" alt="Signature Desserts" class="menu-photo img-reveal">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" alt="Dining Hall" class="menu-photo img-reveal">
-        </section>
+        <!-- Hero -->
+        <div class="menu-hero">
+            <div class="menu-hero-left">
+                <span class="section-label">Culinary Offerings</span>
+                <h1 class="menu-hero-title">
+                    Our<br>
+                    <em>Menu.</em>
+                </h1>
+            </div>
+            <div class="menu-hero-right">
+                <p class="menu-hero-desc">Classic Italian craftsmanship, honest ingredients, and the unmistakable warmth of Amritsar — every dish is a considered decision.</p>
+                <span class="menu-note">All prices inclusive of taxes · Seasonal availability may vary</span>
+            </div>
+        </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-bottom">
-                    <p>&copy; 2026 Elgin Cafe Amritsar. All Rights Reserved.</p>
-                    <p><a href="index.html" class="text-link">Back to Home <span>→</span></a></p>
+        <div class="menu-body">
+
+            <!-- ══ STARTERS ══ -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-name">To Begin</h2>
+                    <p class="category-desc">Lighter plates to set the mood.</p>
+                </div>
+                <div class="dish-grid">
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Burrata & Heritage Tomato</h3>
+                            <p class="dish-desc">Aged balsamic, basil oil, sourdough crisps, sea salt</p>
+                        </div>
+                        <span class="dish-price">₹ 650</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Amritsari Bruschetta</h3>
+                            <p class="dish-desc">Spiced chickpeas, whipped ricotta, smoked paprika, mint oil</p>
+                        </div>
+                        <span class="dish-price">₹ 480</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Truffle Arancini</h3>
+                            <p class="dish-desc">Aged parmesan, black truffle oil, saffron aioli</p>
+                        </div>
+                        <span class="dish-price">₹ 580</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Smoked Salmon Crostini</h3>
+                            <p class="dish-desc">Cream cheese, capers, dill, pickled red onion</p>
+                        </div>
+                        <span class="dish-price">₹ 720</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Mezze Board</h3>
+                            <p class="dish-desc">Hummus, baba ghanoush, marinated olives, warm pita, za'atar</p>
+                        </div>
+                        <span class="dish-price">₹ 750</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Soup du Jour</h3>
+                            <p class="dish-desc">Chef's seasonal selection, served with sourdough</p>
+                        </div>
+                        <span class="dish-price">₹ 380</span>
+                    </div>
                 </div>
             </div>
-        </footer>
+
+            <!-- ══ WOOD-FIRED PIZZAS ══ -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-name">Wood-Fired Pizzas</h2>
+                    <p class="category-desc">Hand-tossed. Blistered at the edge, honest at the centre.</p>
+                </div>
+                <div class="dish-grid">
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Margherita Classica</h3>
+                            <p class="dish-desc">San Marzano tomato, fior di latte, fresh basil, cold-pressed olive oil</p>
+                        </div>
+                        <span class="dish-price">₹ 780</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Prosciutto e Rucola</h3>
+                            <p class="dish-desc">Parma ham, rocket, shaved parmesan, truffle honey, fig compote</p>
+                        </div>
+                        <span class="dish-price">₹ 980</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Paneer Tikka</h3>
+                            <p class="dish-desc">Tandoori paneer, bell peppers, caramelised onion, mint chutney drizzle</p>
+                        </div>
+                        <span class="dish-price">₹ 850</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Quattro Formaggi</h3>
+                            <p class="dish-desc">Mozzarella, gorgonzola, fontina, aged parmesan, honey walnut</p>
+                        </div>
+                        <span class="dish-price">₹ 920</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Fungi Selvatici</h3>
+                            <p class="dish-desc">Wild mushrooms, truffle cream, taleggio, fresh thyme, microgreens</p>
+                        </div>
+                        <span class="dish-price">₹ 890</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Diavola</h3>
+                            <p class="dish-desc">Salami piccante, Calabrian chili, fresh mozzarella, smoked tomato</p>
+                        </div>
+                        <span class="dish-price">₹ 950</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ MAINS ══ -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-name">Mains</h2>
+                    <p class="category-desc">The reason the table goes quiet.</p>
+                </div>
+                <div class="dish-grid">
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Black Truffle Tagliatelle</h3>
+                            <p class="dish-desc">Egg pasta, brown butter, parmesan, summer truffle shavings</p>
+                        </div>
+                        <span class="dish-price">₹ 1,200</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Penne all'Arrabbiata</h3>
+                            <p class="dish-desc">San Marzano, Calabrian chili, garlic, pecorino romano, basil</p>
+                        </div>
+                        <span class="dish-price">₹ 720</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Lamb Osso Buco</h3>
+                            <p class="dish-desc">12-hour braised lamb shank, saffron risotto, gremolata, jus</p>
+                        </div>
+                        <span class="dish-price">₹ 1,650</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Wood-Fired Chicken</h3>
+                            <p class="dish-desc">Half chicken, peri peri marinade, chimichurri, smoked garlic fries</p>
+                        </div>
+                        <span class="dish-price">₹ 980</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Risotto Funghi</h3>
+                            <p class="dish-desc">Arborio, porcini cream, mascarpone, aged parmesan, truffle oil</p>
+                        </div>
+                        <span class="dish-price">₹ 1,050</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Seabass al Forno</h3>
+                            <p class="dish-desc">Oven-roasted seabass, caper butter, fennel salad, lemon oil</p>
+                        </div>
+                        <span class="dish-price">₹ 1,450</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ DESSERTS ══ -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-name">Desserts</h2>
+                    <p class="category-desc">Made in-house. No compromises.</p>
+                </div>
+                <div class="dish-grid">
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Tiramisu al Tavolo</h3>
+                            <p class="dish-desc">Assembled tableside — mascarpone, savoiardi, espresso, cocoa</p>
+                        </div>
+                        <span class="dish-price">₹ 520</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Warm Chocolate Fondant</h3>
+                            <p class="dish-desc">Valrhona 72%, vanilla bean gelato, praline crumb, gold leaf</p>
+                        </div>
+                        <span class="dish-price">₹ 480</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Panna Cotta</h3>
+                            <p class="dish-desc">Vanilla bean, seasonal berry compote, almond tuile, edible flowers</p>
+                        </div>
+                        <span class="dish-price">₹ 420</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Affogato</h3>
+                            <p class="dish-desc">Double espresso poured over fior di latte gelato, amaretti</p>
+                        </div>
+                        <span class="dish-price">₹ 360</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ COCKTAILS ══ -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-name">Cocktails</h2>
+                    <p class="category-desc">Each drink built around a single, well-chosen idea.</p>
+                </div>
+                <div class="dish-grid">
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">The Elgin Negroni</h3>
+                            <p class="dish-desc">Tanqueray gin, Campari, Martini Rosso, dehydrated orange</p>
+                        </div>
+                        <span class="dish-price">₹ 680</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Golden Hour</h3>
+                            <p class="dish-desc">Prosecco, elderflower cordial, yuzu, champagne grapes, gold dust</p>
+                        </div>
+                        <span class="dish-price">₹ 620</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Amritsar Mule</h3>
+                            <p class="dish-desc">Ketel One vodka, fresh ginger beer, cardamom bitters, lime</p>
+                        </div>
+                        <span class="dish-price">₹ 580</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Smoked Old Fashioned</h3>
+                            <p class="dish-desc">Bulleit Bourbon, demerara syrup, Angostura, hickory smoke</p>
+                        </div>
+                        <span class="dish-price">₹ 720</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Garden Spritz</h3>
+                            <p class="dish-desc">Aperol, basil, cucumber, lemon verbena, sparkling water</p>
+                        </div>
+                        <span class="dish-price">₹ 560</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Spiced Dark & Stormy</h3>
+                            <p class="dish-desc">Diplomatico rum, house spiced ginger beer, star anise, lime</p>
+                        </div>
+                        <span class="dish-price">₹ 650</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ CTA BAND ══ -->
+            <div class="menu-cta-band">
+                <h2>Ready to experience it?</h2>
+                <p>Reservations are recommended, especially on weekends.</p>
+                <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve via WhatsApp</a>
+            </div>
+
+        </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <p class="footer-name">ELGIN CAFE</p>
+                    <p class="footer-city">Amritsar, Punjab</p>
+                </div>
+                <a href="index.html" class="text-link">Back to Home <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Elgin Cafe. All Rights Reserved.</p>
+                <p>Part of the Elgin Hospitality Group</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // ── LENIS SMOOTH SCROLL (requestAnimationFrame — mobile friendly) ──
-        const lenis = new Lenis({
-            duration: 1.0,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            smooth: true,
+        // Page entrance
+        gsap.from('.menu-hero-left', {
+            y: 60, opacity: 0, duration: 1.3, ease: 'expo.out', delay: 0.3
         });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const links = document.querySelectorAll('a, button, .menu-photo');
-        let mouseX = 0, mouseY = 0, cX = 0, cY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-        });
-        gsap.ticker.add(() => {
-            cX += (mouseX - cX) * 0.15;
-            cY += (mouseY - cY) * 0.15;
-            gsap.set(cursor, { x: cX, y: cY });
+        gsap.from('.menu-hero-right', {
+            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', delay: 0.55
         });
 
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.classList.add('hover-active'));
-            link.addEventListener('mouseleave', () => cursor.classList.remove('hover-active'));
+        // Category headers
+        gsap.utils.toArray('.category-header').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: { trigger: el, start: 'top 85%' },
+                y: 30, opacity: 0, duration: 1, ease: 'expo.out'
+            });
         });
 
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                menuBtn.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    lenis.stop();
-                } else {
-                    lenis.start();
+        // Dishes staggered reveal
+        gsap.utils.toArray('.menu-category').forEach(category => {
+            const dishes = category.querySelectorAll('.dish');
+            ScrollTrigger.create({
+                trigger: category,
+                start: 'top 75%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(dishes, {
+                        y: 0, opacity: 1,
+                        duration: 0.7,
+                        stagger: 0.07,
+                        ease: 'power3.out'
+                    });
                 }
             });
-            document.querySelectorAll('.nav-link, .nav-btn').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    menuBtn.classList.remove('active');
-                    lenis.start();
-                });
-            });
-        }
+        });
 
-        // ── INSET CLIP PATH IMAGE REVEAL (amrit-egg style) ──
-        gsap.utils.toArray('.img-reveal').forEach((img, i) => {
-            gsap.fromTo(img,
-                { clipPath: 'inset(15%)', opacity: 0, y: 40 },
-                { 
-                    clipPath: 'inset(0%)', 
-                    opacity: 1, 
-                    y: 0,
-                    duration: 1.2, 
-                    delay: i * 0.05,
-                    ease: 'expo.out',
-                    scrollTrigger: { trigger: img, start: 'top 85%' }
-                }
-            );
+        // CTA band
+        gsap.from('.menu-cta-band', {
+            scrollTrigger: { trigger: '.menu-cta-band', start: 'top 85%' },
+            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out'
         });
     </script>
 </body>

@@ -3,169 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elgin Cafe | Premium Dining in Amritsar</title>
-    <meta name="description" content="Feel surrounded by nature, flavours, and conversations at the best cafe in Amritsar - Elgin Cafe. A brand extension of the Elgin hospitality group.">
+    <title>Elgin Cafe — Amritsar</title>
+    <meta name="description" content="Where evenings earn their reputation. Elgin Cafe — Amritsar's finest table. Wood-fired cuisine, signature cocktails, and old-world atmosphere in the Cantonment.">
+    <meta property="og:title" content="Elgin Cafe — Amritsar">
+    <meta property="og:description" content="Where evenings earn their reputation.">
+    <meta property="og:image" content="https://elgincafe.in/wp-content/uploads/2022/04/11.jpg">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Cormorant + DM Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Smooth Scrolling & GSAP -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body class="loading">
+
+    <!-- Grain Overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Loader -->
     <div id="loader">
-        <h1 class="loader-text">ELGIN</h1>
+        <div class="loader-inner">
+            <p class="loader-label">Est. 2022</p>
+            <h1 class="loader-text">ELGIN</h1>
+            <p class="loader-label">Amritsar</p>
+        </div>
+        <div class="loader-bar"></div>
     </div>
 
     <!-- Custom Cursor -->
-    <div class="cursor"></div>
+    <div class="cursor" aria-hidden="true">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
 
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="brand">ELGIN CAFE</a>
-            <div class="menu-btn" id="menu-btn">
+            <a href="#" class="brand">
+                <span class="brand-name">ELGIN</span>
+                <span class="brand-sub">CAFE</span>
+            </a>
+            <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
             </div>
             <div class="nav-links">
                 <a href="#about" class="nav-link">The Story</a>
-                <a href="#menu" class="nav-link">Menu Highlights</a>
-                <a href="menu.html" class="nav-link">Full Menu</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="blog.html" class="nav-link">Blog</a>
                 <a href="#gallery" class="nav-link">Atmosphere</a>
-                <a href="https://wa.me/917888546281" target="_blank" class="nav-btn">Reserve a Table</a>
+                <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="nav-btn">Reserve</a>
             </div>
         </div>
     </nav>
 
-    <main data-scroll-container>
-        <!-- Home / Hero Section -->
+    <main>
+
+        <!-- ══ HERO ══ -->
         <section class="hero" id="home">
             <div class="hero-bg" style="background-image: url('https://elgincafe.in/wp-content/uploads/2022/04/11.jpg');"></div>
             <div class="hero-content">
-                <p class="hero-subtitle reveal-text">AMRITSAR'S FINEST</p>
-                <h1 class="hero-title reveal-text">Taste the <br> Old-World <br> <em>Grandeur</em></h1>
-                <div class="hero-cta reveal-item">
-                    <a href="https://wa.me/917888546281" target="_blank" class="btn primary">Book Your Table</a>
-                    <a href="#about" class="btn secondary">Discover Elgin</a>
+                <div class="hero-eyebrow">
+                    <span class="hero-rule"></span>
+                    <p class="hero-kicker">Amritsar's Finest</p>
+                    <span class="hero-rule"></span>
+                </div>
+                <h1 class="hero-title">
+                    <em class="line-one">Where evenings</em>
+                    <span class="line-two">earn their</span>
+                    <em class="line-three">reputation.</em>
+                </h1>
+                <div class="hero-cta">
+                    <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve a Table</a>
                 </div>
             </div>
-            <div class="scroll-indicator">
-                <span>SCROLL</span>
-                <div class="line"></div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <div class="scroll-line"></div>
+                <span>Scroll</span>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ══ MARQUEE ══ -->
+        <div class="marquee-section" aria-hidden="true">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span>Wood Fired</span>
+                    <span class="dot">·</span>
+                    <span>Seasonal Menu</span>
+                    <span class="dot">·</span>
+                    <span>Signature Cocktails</span>
+                    <span class="dot">·</span>
+                    <span>Amritsar Cantonment</span>
+                    <span class="dot">·</span>
+                    <span>Artisan Desserts</span>
+                    <span class="dot">·</span>
+                    <span>Reserve Your Table</span>
+                    <span class="dot">·</span>
+                    <span>Open Daily</span>
+                    <span class="dot">·</span>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Wood Fired</span>
+                    <span class="dot">·</span>
+                    <span>Seasonal Menu</span>
+                    <span class="dot">·</span>
+                    <span>Signature Cocktails</span>
+                    <span class="dot">·</span>
+                    <span>Amritsar Cantonment</span>
+                    <span class="dot">·</span>
+                    <span>Artisan Desserts</span>
+                    <span class="dot">·</span>
+                    <span>Reserve Your Table</span>
+                    <span class="dot">·</span>
+                    <span>Open Daily</span>
+                    <span class="dot">·</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ ABOUT ══ -->
         <section class="about" id="about">
             <div class="container">
                 <div class="about-grid">
                     <div class="about-text">
                         <span class="section-label">Our Heritage</span>
-                        <h2 class="section-title">A Cultural Hub of Diverse Flavours</h2>
-                        <p class="body-text">Nestled in Amritsar’s sprawling Cantonment area, Elgin Cafe is an attempt to communicate the tale of the city’s rich cultural heritage. Accented with our signature emerald green and gold, the decor exudes an impression of old-world grandeur that is synonymous with the Elgin group.</p>
-                        <p class="body-text">Combining the best of a day-bistro and a trendy bar by night, we offer a space where guests feel surrounded by nature, flavours, and conversations.</p>
-                        <a href="#menu" class="text-link">Explore the Menu <span>→</span></a>
+                        <h2 class="section-title">A place you end up staying longer than planned.</h2>
+                        <p class="body-text">Tucked inside Amritsar's Cantonment — a calm city apart from the city — Elgin is a space built for unhurried evenings. Emerald and candlelight. Wood-fired bread and a well-made drink. The kind of company that makes hours disappear.</p>
+                        <p class="body-text">A brand extension of the Elgin hospitality group, the cafe bridges day-bistro and evening bar without apology — doing both with the same obsessive attention to detail.</p>
+                        <a href="#menu" class="text-link">Explore the Menu <span aria-hidden="true">→</span></a>
                     </div>
-                    <div class="about-image">
-                        <img src="https://elgincafe.in/wp-content/uploads/2022/04/33.jpg" alt="Elgin Cafe Interior, Emerald Green Decor" class="parallax-img">
+                    <div class="about-image-wrap">
+                        <div class="about-image">
+                            <img src="https://elgincafe.in/wp-content/uploads/2022/04/33.jpg" alt="Elgin Cafe Interior — Emerald Green and Gold Decor" class="parallax-img">
+                        </div>
+                        <div class="about-badge">
+                            <span>Est.</span>
+                            <span class="badge-year">2022</span>
+                            <span>Amritsar</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Menu Highlights (Parallax/Horizontal Scroll feel) -->
-        <section class="menu" id="menu">
+        <!-- ══ MANIFESTO ══ -->
+        <section class="manifesto">
+            <div class="manifesto-inner">
+                <p class="manifesto-text">
+                    <em class="m-word">We</em>
+                    <em class="m-word">didn't</em>
+                    <em class="m-word">build</em>
+                    <em class="m-word">another</em>
+                    <em class="m-word">restaurant.</em>
+                </p>
+                <p class="manifesto-text manifesto-text--gold">
+                    <em class="m-word">We</em>
+                    <em class="m-word">built</em>
+                    <em class="m-word">a</em>
+                    <em class="m-word">reason</em>
+                    <em class="m-word">to</em>
+                    <em class="m-word">stay.</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- ══ MENU HIGHLIGHTS ══ -->
+        <section class="menu-sec" id="menu">
             <div class="container">
                 <div class="menu-header">
-                    <span class="section-label">Culinary Fusion</span>
-                    <h2 class="section-title">Classic Italian meets <br><em>Rustic Amritsar</em></h2>
+                    <span class="section-label">A Considered Menu</span>
+                    <h2 class="section-title">Classic Italian. <br><em>The soul of Amritsar.</em></h2>
                 </div>
                 
                 <div class="menu-list">
                     <div class="menu-item">
                         <div class="item-info">
                             <h3>Wood-Fired Pizzas</h3>
-                            <p>Hand-tossed authenticity baked to perfection.</p>
+                            <p>Hand-tossed, blistered at the edge, honest at the centre.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Wood-Fired Pizzas">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Wood-Fired Pizzas" loading="lazy">
                         </div>
                         <div class="item-line"></div>
                     </div>
                     <div class="menu-item">
                         <div class="item-info">
                             <h3>Signature Cocktails</h3>
-                            <p>Ecstatic weekends filled with vibrant drinks.</p>
+                            <p>Each drink built around a single, well-chosen idea.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop" alt="Signature Cocktails">
+                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop" alt="Signature Cocktails" loading="lazy">
                         </div>
                         <div class="item-line"></div>
                     </div>
                     <div class="menu-item">
                         <div class="item-info">
                             <h3>Artisan Desserts</h3>
-                            <p>Prepared in-house from scratch.</p>
+                            <p>Made in-house. The kind that make the table go quiet.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=1000&auto=format&fit=crop" alt="Artisan Desserts">
+                            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=1000&auto=format&fit=crop" alt="Artisan Desserts" loading="lazy">
                         </div>
                         <div class="item-line"></div>
                     </div>
                 </div>
                 <div class="menu-cta">
-                    <a href="menu.html" class="btn secondary">View Full Menu</a>
+                    <a href="menu.html" class="btn secondary">View the Full Menu</a>
                 </div>
             </div>
         </section>
 
-        <!-- Awwwards-Style Stacking 3D Gallery -->
+        <!-- ══ STATS STRIP ══ -->
+        <div class="stats-strip">
+            <div class="stats-inner">
+                <div class="stat">
+                    <span class="stat-num">2022</span>
+                    <span class="stat-label">Established</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">Amritsar</span>
+                    <span class="stat-label">Cantonment</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">Daily</span>
+                    <span class="stat-label">Open</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">Elgin</span>
+                    <span class="stat-label">Hospitality Group</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ GALLERY ══ -->
         <section class="gallery" id="gallery">
-            <div class="container">
-                <div class="gallery-stack">
-                    <div class="gallery-card">
-                        <div class="card-inner">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Grand Ambiance">
-                            <div class="card-overlay">
+            <div class="gallery-header container">
+                <span class="section-label">Atmosphere</span>
+                <h2 class="section-title">A room that earns <br><em>its keep.</em></h2>
+            </div>
+            <div class="gallery-stack">
+                <div class="gallery-card">
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Grand Ambiance" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-text">
+                                <span class="card-num">01</span>
                                 <h3>Grand Ambiance</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-card" style="margin-top: 20vh;">
-                        <div class="card-inner">
-                            <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=1600&auto=format&fit=crop" alt="Signature Mixology">
-                            <div class="card-overlay">
+                </div>
+                <div class="gallery-card" style="margin-top: 20vh;">
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=1600&auto=format&fit=crop" alt="Signature Mixology" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-text">
+                                <span class="card-num">02</span>
                                 <h3>Signature Mixology</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-card" style="margin-top: 20vh;">
-                        <div class="card-inner">
-                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1600&auto=format&fit=crop" alt="Culinary Excellence">
-                            <div class="card-overlay">
+                </div>
+                <div class="gallery-card" style="margin-top: 20vh;">
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1600&auto=format&fit=crop" alt="Culinary Excellence" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-text">
+                                <span class="card-num">03</span>
                                 <h3>Culinary Excellence</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-card" style="margin-top: 20vh;">
-                        <div class="card-inner">
-                            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1600&auto=format&fit=crop" alt="Artisan Coffee">
-                            <div class="card-overlay">
+                </div>
+                <div class="gallery-card" style="margin-top: 20vh;">
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1600&auto=format&fit=crop" alt="Artisan Coffee" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-text">
+                                <span class="card-num">04</span>
                                 <h3>Artisan Coffee</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-card" style="margin-top: 20vh;">
-                        <div class="card-inner">
-                            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1600&auto=format&fit=crop" alt="Intimate Evenings">
-                            <div class="card-overlay">
+                </div>
+                <div class="gallery-card" style="margin-top: 20vh;">
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1600&auto=format&fit=crop" alt="Intimate Evenings" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-text">
+                                <span class="card-num">05</span>
                                 <h3>Intimate Evenings</h3>
                             </div>
                         </div>
@@ -174,58 +309,62 @@
             </div>
         </section>
 
-        <!-- Location & Contact -->
+        <!-- ══ CONTACT ══ -->
         <section class="contact" id="contact">
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-info">
-                        <span class="section-label">Join Us</span>
-                        <h2 class="section-title">Experience <br>Warmth & Flavours</h2>
+                        <span class="section-label">Find Us</span>
+                        <h2 class="section-title">Come as you are. <br><em>Stay as long as you like.</em></h2>
                         
                         <div class="info-group">
-                            <h4>Location</h4>
-                            <p>On left from Ivy Hospital, Ajnala Rd.,<br>Inside 2nd Lane, D R Enclave, Bal Schander,<br>Amritsar, Punjab 143001. INDIA</p>
+                            <h4>Address</h4>
+                            <p>On left from Ivy Hospital, Ajnala Rd.,<br>Inside 2nd Lane, D R Enclave,<br>Amritsar, Punjab 143001</p>
                         </div>
                         
                         <div class="info-group">
-                            <h4>Contact</h4>
+                            <h4>Reservations</h4>
                             <p><a href="tel:+917087934000">+91 70879 34000</a></p>
-                            <p><a href="mailto:hello@elgincafe.in">hello@elgincafe.in</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection#533b363f3f3c13363f343a3d303235367d3a3d"><span class="__cf_email__" data-cfemail="660e030a0a0926030a010f0805070003480f08">[email&#160;protected]</span></a></p>
                         </div>
 
                         <div class="socials">
-                            <a href="https://www.instagram.com/elgin_cafe">Instagram</a>
-                            <a href="https://www.facebook.com/elgincafeamritsar/">Facebook</a>
+                            <a href="https://www.instagram.com/elgin_cafe" target="_blank" rel="noopener" class="social-link">Instagram <span aria-hidden="true">↗</span></a>
+                            <a href="https://www.facebook.com/elgincafeamritsar/" target="_blank" rel="noopener" class="social-link">Facebook <span aria-hidden="true">↗</span></a>
                         </div>
                     </div>
                     <div class="contact-map">
-                        <!-- Google Maps Embed -->
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3395.2758117765997!2d74.83959827622955!3d31.681123939178494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391965a3c10ca4e7%3A0xc6cb413d96fe8da5!0xElgin+Cafe!5e0!3m2!1sen!2sin!4v1651817502941!5m2!1sen!2sin" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            src="https://maps.google.com/maps?q=Elgin+Cafe,+Ajnala+Road,+Amritsar,+Punjab&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade" title="Elgin Cafe Location">
                         </iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
+        <!-- ══ FOOTER ══ -->
         <footer class="footer">
             <div class="container">
+                <div class="footer-inner">
+                    <div class="footer-brand">
+                        <p class="footer-name">ELGIN CAFE</p>
+                        <p class="footer-city">Amritsar, Punjab</p>
+                    </div>
+                    <div class="footer-cta">
+                        <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve a Table</a>
+                    </div>
+                </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2026 Elgin Cafe Amritsar. All Rights Reserved.</p>
-                    <p>Designed for Conversion & Elegance.</p>
+                    <p>&copy; 2026 Elgin Cafe. All Rights Reserved.</p>
+                    <p>Part of the Elgin Hospitality Group</p>
                 </div>
             </div>
         </footer>
+
     </main>
 
-    <!-- JS -->
     <script src="script.js"></script>
 </body>
 </html>

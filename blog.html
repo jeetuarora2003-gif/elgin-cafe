@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Elgin Cafe, Amritsar</title>
+    <meta name="description" content="Stories from Elgin Cafe — behind the menu, the room, and the evenings that made us.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ── Blog Page Specific ── */
+
+        .blog-hero {
+            padding: 12rem var(--space-container) 5rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: end;
+        }
+
+        .blog-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .blog-hero-title em {
+            display: block;
+            font-style: italic;
+            color: var(--clr-gold);
+        }
+
+        .blog-hero-desc {
+            font-size: 1.0625rem;
+            color: var(--clr-text-muted);
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 42ch;
+            padding-bottom: 0.75rem;
+        }
+
+        /* ── Blog Grid ── */
+        .blog-body {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-container) 8rem;
+        }
+
+        .blog-divider {
+            border: none;
+            border-top: 1px solid var(--clr-border);
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-container);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            padding-top: 5rem;
+        }
+
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: none;
+        }
+
+        .blog-card-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 2px;
+            margin-bottom: 1.75rem;
+        }
+
+        .blog-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            display: block;
+        }
+
+        .blog-card:hover .blog-card-img img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .blog-tag {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--clr-gold);
+            border: 1px solid var(--clr-border);
+            padding: 0.2rem 0.65rem;
+        }
+
+        .blog-date {
+            font-family: var(--font-body);
+            font-size: 0.6875rem;
+            color: var(--clr-text-muted);
+            letter-spacing: 0.08em;
+        }
+
+        .blog-card-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 1.75vw, 1.625rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--clr-text);
+            margin-bottom: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .blog-card:hover .blog-card-title {
+            color: var(--clr-gold);
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.9375rem;
+            color: var(--clr-text-muted);
+            font-weight: 300;
+            line-height: 1.75;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-card-link {
+            font-family: var(--font-body);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--clr-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .blog-card-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--clr-gold);
+            transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .blog-card:hover .blog-card-link::after {
+            width: 100%;
+        }
+
+        /* ── Featured Post (first card spans full width) ── */
+        .blog-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--clr-border-white);
+            margin-bottom: 1rem;
+        }
+
+        .blog-card.featured .blog-card-img {
+            aspect-ratio: 16/10;
+            margin-bottom: 0;
+        }
+
+        .blog-card.featured .blog-card-title {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+        }
+
+        .blog-card.featured .blog-card-excerpt {
+            font-size: 1.0625rem;
+            max-width: 48ch;
+        }
+
+        /* ── CTA Band ── */
+        .blog-cta-band {
+            background-color: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: 3px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .blog-cta-band h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--clr-text);
+            margin-bottom: 1.25rem;
+        }
+
+        .blog-cta-band p {
+            color: var(--clr-text-muted);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .blog-hero { grid-template-columns: 1fr; gap: 2rem; }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+            .blog-card.featured {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero { padding: 10rem var(--space-container) 3rem; }
+            .blog-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .blog-card.featured { grid-template-columns: 1fr; }
+            .blog-cta-band { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Grain -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" aria-hidden="true">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <span class="brand-name">ELGIN</span>
+                <span class="brand-sub">CAFE</span>
+            </a>
+            <div class="menu-btn" id="menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#about" class="nav-link">The Story</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="index.html#gallery" class="nav-link">Atmosphere</a>
+                <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="nav-btn">Reserve</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ── HERO ── -->
+        <div class="blog-hero">
+            <div class="blog-hero-left">
+                <span class="section-label">Elgin Stories</span>
+                <h1 class="blog-hero-title">
+                    From the<br>
+                    <em>kitchen &amp; beyond.</em>
+                </h1>
+            </div>
+            <div class="blog-hero-right">
+                <p class="blog-hero-desc">Behind the menu, inside the room, and out into the evenings that made Elgin what it is. Stories worth sitting down for.</p>
+            </div>
+        </div>
+
+        <hr class="blog-divider">
+
+        <!-- ── BLOG POSTS ── -->
+        <div class="blog-body">
+            <div class="blog-grid">
+
+                <!-- Featured -->
+                <article class="blog-card featured">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Inside Elgin" loading="lazy">
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span class="blog-tag">Behind the Scenes</span>
+                            <span class="blog-date">March 2026</span>
+                        </div>
+                        <h2 class="blog-card-title">Why we designed a room you'd want to linger in</h2>
+                        <p class="blog-card-excerpt">Every detail in Elgin's dining room was a deliberate decision — from the emerald walls that deepen as the evening dims, to the tables spaced wide enough that conversations stay private. We sat down with the design team to understand the thinking behind the room.</p>
+                        <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="blog-card">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=900&auto=format&fit=crop" alt="Wood-fired kitchen" loading="lazy">
+                    </div>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">The Kitchen</span>
+                        <span class="blog-date">February 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">The wood-fired oven: our most stubborn kitchen decision</h2>
+                    <p class="blog-card-excerpt">It took four months to source, two weeks to install, and one service to prove it was worth every bit of it. Our head chef explains what a real wood fire does to dough that nothing else can.</p>
+                    <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="blog-card">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=900&auto=format&fit=crop" alt="Cocktail crafting" loading="lazy">
+                    </div>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">Bar Notes</span>
+                        <span class="blog-date">January 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Building the Elgin Negroni — a year in the making</h2>
+                    <p class="blog-card-excerpt">Our signature Negroni went through eleven versions before we were satisfied. The story of balancing bitterness, sweetness, and something that felt distinctly Amritsar.</p>
+                    <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="blog-card">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?q=80&w=900&auto=format&fit=crop" alt="Desserts" loading="lazy">
+                    </div>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">Pastry</span>
+                        <span class="blog-date">December 2025</span>
+                    </div>
+                    <h2 class="blog-card-title">Tiramisu assembled tableside — the ritual behind the dish</h2>
+                    <p class="blog-card-excerpt">There is a very particular silence that falls at the table when our tiramisu arrives. We think we know why. Our pastry chef walks through every layer of the most-ordered dessert on our menu.</p>
+                    <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="blog-card">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=900&auto=format&fit=crop" alt="Morning coffee" loading="lazy">
+                    </div>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">Coffee</span>
+                        <span class="blog-date">November 2025</span>
+                    </div>
+                    <h2 class="blog-card-title">Single origin, double shot: how we chose our coffee programme</h2>
+                    <p class="blog-card-excerpt">Amritsar doesn't have a coffee culture yet. We thought that was a reason to build one carefully, not quickly. Our sourcing journey — from Chikmagalur to our espresso machine.</p>
+                    <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="blog-card">
+                    <div class="blog-card-img">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=900&auto=format&fit=crop" alt="Evening at Elgin" loading="lazy">
+                    </div>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">The Room</span>
+                        <span class="blog-date">October 2025</span>
+                    </div>
+                    <h2 class="blog-card-title">The golden hour at Elgin — what happens at 7pm every evening</h2>
+                    <p class="blog-card-excerpt">There is a moment — usually just after the candles are lit and just before the dinner rush — where the room feels entirely itself. We tried to describe it. We mostly failed, but here's the attempt.</p>
+                    <span class="blog-card-link">Read the story <span aria-hidden="true">→</span></span>
+                </article>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="blog-cta-band">
+                <h2>Come see it in person.</h2>
+                <p>The room is better than the writing. We promise.</p>
+                <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve a Table</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <p class="footer-name">ELGIN CAFE</p>
+                    <p class="footer-city">Amritsar, Punjab</p>
+                </div>
+                <a href="index.html" class="text-link">Back to Home <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Elgin Cafe. All Rights Reserved.</p>
+                <p>Part of the Elgin Hospitality Group</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Hero entrance
+        gsap.from('.blog-hero-left', {
+            y: 60, opacity: 0, duration: 1.3, ease: 'expo.out', delay: 0.2
+        });
+        gsap.from('.blog-hero-right', {
+            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out', delay: 0.45
+        });
+
+        // Cards reveal
+        gsap.utils.toArray('.blog-card').forEach((card, i) => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(card, {
+                        y: 0, opacity: 1,
+                        duration: 0.9,
+                        delay: (i % 3) * 0.08,
+                        ease: 'power3.out'
+                    });
+                }
+            });
+        });
+
+        // CTA band
+        gsap.from('.blog-cta-band', {
+            scrollTrigger: { trigger: '.blog-cta-band', start: 'top 85%' },
+            y: 40, opacity: 0, duration: 1.1, ease: 'expo.out'
+        });
+    </script>
+</body>
+</html>

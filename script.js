@@ -3,6 +3,8 @@
 // GSAP + Lenis + ScrollTrigger, Universal (No Mobile Gates)
 // ══════════════════════════════════════════════════
 
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Set hero initial states via JS (not CSS) so content is visible if JS fails
@@ -88,8 +90,7 @@ const loaderTL = gsap.timeline({
 
 loaderTL
     .to('.loader-label', {
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: "power3.out",
-        from: { opacity: 0, y: 15 }
+        opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: "power3.out"
     })
     .to('.loader-text', {
         opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
@@ -100,7 +101,7 @@ loaderTL
     .to('#loader', {
         height: 0, duration: 1.1, ease: "expo.inOut", delay: 0.2
     })
-    // Hero entrance — staggered
+    // Hero entrance
     .to('.hero-eyebrow', {
         opacity: 1, y: 0, duration: 1, ease: "expo.out"
     }, "-=0.4")

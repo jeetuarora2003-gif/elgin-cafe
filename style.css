@@ -1078,6 +1078,31 @@ section { padding: var(--space-section) 0; }
 }
 
 /* ══ GPU HINTS ══ */
+/* ══ IMAGE-SPECIFIC FRAMING ══ */
+#img-pizza { object-position: 40% 90%; }
+#img-cocktail { object-position: center 45%; }
+#img-dessert { object-position: 100% 40%; transform: scale(1.3); }
+#img-grand { object-position: center 70%; }
+#img-culinary { object-position: center 70%; }
+
+/* Mobile Resets for Framing */
+@media (max-width: 768px) {
+    #img-cocktail, #img-grand, #img-culinary { 
+        object-position: center center !important; 
+        transform: scale(1) !important;
+    }
+    
+    #img-pizza {
+        object-position: 70% 100% !important; /* Move a bit left as requested */
+        transform: scale(1.6) !important; /* Subtle zoom out from 2.0 */
+    }
+    
+    #img-dessert {
+        object-position: center center !important;
+        transform: scale(1.15) !important; /* Subtle zoom for mobile */
+    }
+}
+
 .hero-bg, .parallax-img, .gallery-card, .about-image {
     will-change: transform;
     backface-visibility: hidden;

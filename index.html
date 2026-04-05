@@ -85,7 +85,6 @@
     }
     </script>
     
-    <!-- ═══ PERFORMANCE: Preconnect to critical origins ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -93,19 +92,13 @@
     <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://elgincafe.in">
     
-    <!-- ═══ PERFORMANCE: Preload hero background (LCP element) ═══ -->
     <link rel="preload" as="image" href="https://elgincafe.in/wp-content/uploads/2022/04/11.jpg" fetchpriority="high">
-    
-    <!-- ═══ PERFORMANCE: Preload critical fonts ═══ -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjQWlhv.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwA.woff2" crossorigin>
     
-    <!-- Google Fonts: Cormorant Garamond + DM Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- ═══ PERFORMANCE: Inline critical above-the-fold CSS ═══ -->
     <style>
-        /* Critical CSS — renders loader + hero instantly */
         :root{--clr-bg:#050F0A;--clr-surface:#091A11;--clr-gold:#C9A84C;--clr-gold-light:#E8C97A;--clr-text:#F0EAD8;--clr-text-muted:#7A8A80;--clr-text-dim:rgba(240,234,216,0.4);--clr-border:rgba(201,168,76,0.12);--clr-border-white:rgba(240,234,216,0.08);--font-display:'Cormorant Garamond','Cormorant',Georgia,serif;--font-body:'DM Sans','Helvetica Neue',sans-serif;--space-container:clamp(1.5rem,5%,6rem);--ease-expo:cubic-bezier(0.19,1,0.22,1)}
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:initial;scrollbar-width:none;font-size:16px}
@@ -125,22 +118,23 @@
         .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%;width:100%;display:flex;flex-direction:column;align-items:center}
         .navbar{position:fixed;top:0;left:0;width:100%;padding:2.25rem var(--space-container);z-index:100;transition:padding 0.5s var(--ease-expo),background 0.5s var(--ease-expo)}
         .nav-container{display:flex;justify-content:space-between;align-items:center}
-        .brand{display:flex;align-items:center;line-height:1;z-index:101}
-        .brand-logo{height:44px;width:auto;filter:brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(600%) hue-rotate(5deg) brightness(95%);transition:opacity 0.3s ease;display:block}
-        .brand-logo:hover{opacity:0.7}
+        /* Brand: show text by default, swap to logo when it loads */
+        .brand{display:flex;flex-direction:column;line-height:1;z-index:101}
+        .brand-name{font-family:var(--font-display);font-size:1.25rem;letter-spacing:0.3em;color:var(--clr-text);font-weight:400}
+        .brand-sub{font-family:var(--font-body);font-size:0.5625rem;letter-spacing:0.4em;color:var(--clr-gold);text-transform:uppercase;padding-right:0.4em}
+        .brand-logo{height:44px;width:auto;display:none;filter:brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(600%) hue-rotate(5deg) brightness(95%);transition:opacity 0.3s ease}
+        .brand-logo.loaded{display:block}
+        .brand-logo.loaded + .brand-text{display:none}
         @media(pointer:coarse){body,a,button,.menu-item{cursor:auto!important}.cursor{display:none!important}}
     </style>
     
-    <!-- ═══ PERFORMANCE: Load full CSS asynchronously ═══ -->
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
 </head>
 <body class="loading">
 
-    <!-- Grain Overlay -->
     <div class="grain" aria-hidden="true"></div>
 
-    <!-- Loader -->
     <div id="loader">
         <div class="loader-inner">
             <p class="loader-label">Est. 2022</p>
@@ -150,7 +144,6 @@
         <div class="loader-bar"></div>
     </div>
 
-    <!-- Custom Cursor -->
     <div class="cursor" aria-hidden="true">
         <div class="cursor-dot"></div>
         <div class="cursor-ring"></div>
@@ -160,7 +153,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="brand">
-                <img src="elgin-logo-1.svg" alt="Elgin Cafe" class="brand-logo" width="140" height="44">
+                <!-- Logo loads silently; if it fails, text stays visible -->
+                <img src="elgin-logo-1.svg" alt="Elgin Cafe" class="brand-logo"
+                     onload="this.classList.add('loaded')"
+                     onerror="this.style.display='none'">
+                <span class="brand-text">
+                    <span class="brand-name">ELGIN</span>
+                    <span class="brand-sub">CAFE</span>
+                </span>
             </a>
             <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>
@@ -178,7 +178,7 @@
 
     <main>
 
-        <!-- ══ HERO ══ -->
+        <!-- HERO -->
         <section class="hero" id="home">
             <div class="hero-bg" style="background-image: url('https://elgincafe.in/wp-content/uploads/2022/04/11.jpg'); background-color: #0a1f12;"></div>
             <div class="hero-content">
@@ -202,46 +202,31 @@
             </div>
         </section>
 
-        <!-- ══ MARQUEE ══ -->
+        <!-- MARQUEE -->
         <div class="marquee-section" aria-hidden="true">
             <div class="marquee-track">
                 <div class="marquee-content">
-                    <span>Wood Fired</span>
-                    <span class="dot">·</span>
-                    <span>Seasonal Menu</span>
-                    <span class="dot">·</span>
-                    <span>Signature Cocktails</span>
-                    <span class="dot">·</span>
-                    <span>Amritsar Cantonment</span>
-                    <span class="dot">·</span>
-                    <span>Artisan Desserts</span>
-                    <span class="dot">·</span>
-                    <span>Reserve Your Table</span>
-                    <span class="dot">·</span>
-                    <span>Open Daily</span>
-                    <span class="dot">·</span>
+                    <span>Wood Fired</span><span class="dot">·</span>
+                    <span>Seasonal Menu</span><span class="dot">·</span>
+                    <span>Signature Cocktails</span><span class="dot">·</span>
+                    <span>Amritsar Cantonment</span><span class="dot">·</span>
+                    <span>Artisan Desserts</span><span class="dot">·</span>
+                    <span>Reserve Your Table</span><span class="dot">·</span>
+                    <span>Open Daily</span><span class="dot">·</span>
                 </div>
-                <!-- Duplicate for seamless loop -->
                 <div class="marquee-content" aria-hidden="true">
-                    <span>Wood Fired</span>
-                    <span class="dot">·</span>
-                    <span>Seasonal Menu</span>
-                    <span class="dot">·</span>
-                    <span>Signature Cocktails</span>
-                    <span class="dot">·</span>
-                    <span>Amritsar Cantonment</span>
-                    <span class="dot">·</span>
-                    <span>Artisan Desserts</span>
-                    <span class="dot">·</span>
-                    <span>Reserve Your Table</span>
-                    <span class="dot">·</span>
-                    <span>Open Daily</span>
-                    <span class="dot">·</span>
+                    <span>Wood Fired</span><span class="dot">·</span>
+                    <span>Seasonal Menu</span><span class="dot">·</span>
+                    <span>Signature Cocktails</span><span class="dot">·</span>
+                    <span>Amritsar Cantonment</span><span class="dot">·</span>
+                    <span>Artisan Desserts</span><span class="dot">·</span>
+                    <span>Reserve Your Table</span><span class="dot">·</span>
+                    <span>Open Daily</span><span class="dot">·</span>
                 </div>
             </div>
         </div>
 
-        <!-- ══ ABOUT ══ -->
+        <!-- ABOUT -->
         <section class="about" id="about">
             <div class="container">
                 <div class="about-grid">
@@ -266,7 +251,7 @@
             </div>
         </section>
 
-        <!-- ══ MANIFESTO ══ -->
+        <!-- MANIFESTO -->
         <section class="manifesto">
             <div class="manifesto-inner">
                 <p class="manifesto-text">
@@ -287,14 +272,13 @@
             </div>
         </section>
 
-        <!-- ══ MENU HIGHLIGHTS ══ -->
+        <!-- MENU -->
         <section class="menu-sec" id="menu">
             <div class="container">
                 <div class="menu-header">
                     <span class="section-label">A Considered Menu</span>
                     <h2 class="section-title">Classic Italian. <br><em>The soul of Amritsar.</em></h2>
                 </div>
-                
                 <div class="menu-list">
                     <div class="menu-item">
                         <div class="item-info">
@@ -302,10 +286,7 @@
                             <p>Hand-tossed, blistered at the edge, honest at the centre.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <picture>
-                                <source srcset="pizza.webp" type="image/webp">
-                                <img src="pizza.jpg" alt="Wood-Fired Pizzas" id="img-pizza" loading="lazy" width="600" height="300" decoding="async">
-                            </picture>
+                            <picture><source srcset="pizza.webp" type="image/webp"><img src="pizza.jpg" alt="Wood-Fired Pizzas" id="img-pizza" loading="lazy" width="600" height="300" decoding="async"></picture>
                         </div>
                         <div class="item-line"></div>
                     </div>
@@ -315,10 +296,7 @@
                             <p>Each drink built around a single, well-chosen idea.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <picture>
-                                <source srcset="drink.webp" type="image/webp">
-                                <img src="drink.jpg" alt="Signature Cocktails" id="img-cocktail" loading="lazy" width="600" height="300" decoding="async">
-                            </picture>
+                            <picture><source srcset="drink.webp" type="image/webp"><img src="drink.jpg" alt="Signature Cocktails" id="img-cocktail" loading="lazy" width="600" height="300" decoding="async"></picture>
                         </div>
                         <div class="item-line"></div>
                     </div>
@@ -328,10 +306,7 @@
                             <p>Made in-house. The kind that make the table go quiet.</p>
                         </div>
                         <div class="item-accordion-img">
-                            <picture>
-                                <source srcset="artisian.webp" type="image/webp">
-                                <img src="artisian.jpg.png" alt="Artisan Desserts" id="img-dessert" loading="lazy" width="600" height="300" decoding="async">
-                            </picture>
+                            <picture><source srcset="artisian.webp" type="image/webp"><img src="artisian.jpg.png" alt="Artisan Desserts" id="img-dessert" loading="lazy" width="600" height="300" decoding="async"></picture>
                         </div>
                         <div class="item-line"></div>
                     </div>
@@ -342,32 +317,20 @@
             </div>
         </section>
 
-        <!-- ══ STATS STRIP ══ -->
+        <!-- STATS -->
         <div class="stats-strip">
             <div class="stats-inner">
-                <div class="stat">
-                    <span class="stat-num">2022</span>
-                    <span class="stat-label">Established</span>
-                </div>
+                <div class="stat"><span class="stat-num">2022</span><span class="stat-label">Established</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-num">Amritsar</span>
-                    <span class="stat-label">Cantonment</span>
-                </div>
+                <div class="stat"><span class="stat-num">Amritsar</span><span class="stat-label">Cantonment</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-num">Daily</span>
-                    <span class="stat-label">Open</span>
-                </div>
+                <div class="stat"><span class="stat-num">Daily</span><span class="stat-label">Open</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-num">Elgin</span>
-                    <span class="stat-label">Hospitality Group</span>
-                </div>
+                <div class="stat"><span class="stat-num">Elgin</span><span class="stat-label">Hospitality Group</span></div>
             </div>
         </div>
 
-        <!-- ══ GALLERY ══ -->
+        <!-- GALLERY -->
         <section class="gallery" id="gallery">
             <div class="gallery-header container">
                 <span class="section-label">Atmosphere</span>
@@ -376,114 +339,66 @@
             <div class="gallery-stack">
                 <div class="gallery-card">
                     <div class="card-inner">
-                        <picture>
-                            <source srcset="grand.webp" type="image/webp">
-                            <img src="grand.jpg" alt="Grand Ambiance" id="img-grand" loading="lazy" width="800" height="533" decoding="async">
-                        </picture>
-                        <div class="card-overlay">
-                            <div class="card-text">
-                                <span class="card-num">01</span>
-                                <h3>Grand Ambiance</h3>
-                            </div>
-                        </div>
+                        <picture><source srcset="grand.webp" type="image/webp"><img src="grand.jpg" alt="Grand Ambiance" id="img-grand" loading="lazy" width="800" height="533" decoding="async"></picture>
+                        <div class="card-overlay"><div class="card-text"><span class="card-num">01</span><h3>Grand Ambiance</h3></div></div>
                     </div>
                 </div>
                 <div class="gallery-card" style="margin-top: 20vh;">
                     <div class="card-inner">
-                        <picture>
-                            <source srcset="signature.webp" type="image/webp">
-                            <img src="signature.jpg" alt="Signature Mixology" loading="lazy" width="800" height="533" decoding="async">
-                        </picture>
-                        <div class="card-overlay">
-                            <div class="card-text">
-                                <span class="card-num">02</span>
-                                <h3>Signature Mixology</h3>
-                            </div>
-                        </div>
+                        <picture><source srcset="signature.webp" type="image/webp"><img src="signature.jpg" alt="Signature Mixology" loading="lazy" width="800" height="533" decoding="async"></picture>
+                        <div class="card-overlay"><div class="card-text"><span class="card-num">02</span><h3>Signature Mixology</h3></div></div>
                     </div>
                 </div>
                 <div class="gallery-card" style="margin-top: 20vh;">
                     <div class="card-inner">
-                        <picture>
-                            <source srcset="culinery.webp" type="image/webp">
-                            <img src="culinery.jpg" alt="Culinary Excellence" id="img-culinary" loading="lazy" width="800" height="533" decoding="async">
-                        </picture>
-                        <div class="card-overlay">
-                            <div class="card-text">
-                                <span class="card-num">03</span>
-                                <h3>Culinary Excellence</h3>
-                            </div>
-                        </div>
+                        <picture><source srcset="culinery.webp" type="image/webp"><img src="culinery.jpg" alt="Culinary Excellence" id="img-culinary" loading="lazy" width="800" height="533" decoding="async"></picture>
+                        <div class="card-overlay"><div class="card-text"><span class="card-num">03</span><h3>Culinary Excellence</h3></div></div>
                     </div>
                 </div>
                 <div class="gallery-card" style="margin-top: 20vh;">
                     <div class="card-inner">
-                        <picture>
-                            <source srcset="coffee.webp" type="image/webp">
-                            <img src="coffee.jpg.png" alt="Artisan Coffee" loading="lazy" width="800" height="533" decoding="async">
-                        </picture>
-                        <div class="card-overlay">
-                            <div class="card-text">
-                                <span class="card-num">04</span>
-                                <h3>Artisan Coffee</h3>
-                            </div>
-                        </div>
+                        <picture><source srcset="coffee.webp" type="image/webp"><img src="coffee.jpg.png" alt="Artisan Coffee" loading="lazy" width="800" height="533" decoding="async"></picture>
+                        <div class="card-overlay"><div class="card-text"><span class="card-num">04</span><h3>Artisan Coffee</h3></div></div>
                     </div>
                 </div>
                 <div class="gallery-card" style="margin-top: 20vh;">
                     <div class="card-inner">
-                        <picture>
-                            <source srcset="evening-patio.webp" type="image/webp">
-                            <img src="evening-patio.jpg.jpg" alt="Intimate Evenings" loading="lazy" width="800" height="533" decoding="async">
-                        </picture>
-                        <div class="card-overlay">
-                            <div class="card-text">
-                                <span class="card-num">05</span>
-                                <h3>Intimate Evenings</h3>
-                            </div>
-                        </div>
+                        <picture><source srcset="evening-patio.webp" type="image/webp"><img src="evening-patio.jpg.jpg" alt="Intimate Evenings" loading="lazy" width="800" height="533" decoding="async"></picture>
+                        <div class="card-overlay"><div class="card-text"><span class="card-num">05</span><h3>Intimate Evenings</h3></div></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ══ CONTACT ══ -->
+        <!-- CONTACT -->
         <section class="contact" id="contact">
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-info">
                         <span class="section-label">Find Us</span>
                         <h2 class="section-title">Come as you are. <br><em>Stay as long as you like.</em></h2>
-                        
                         <div class="info-group">
                             <h4>Address</h4>
                             <p>On left from Ivy Hospital, Ajnala Rd.,<br>Inside 2nd Lane, D R Enclave,<br>Amritsar, Punjab 143001</p>
                         </div>
-                        
                         <div class="info-group">
                             <h4>Reservations</h4>
                             <p><a href="tel:+917087934000">+91 70879 34000</a></p>
                             <p><a href="mailto:hello@elgincafe.in">hello@elgincafe.in</a></p>
                         </div>
-
                         <div class="socials">
                             <a href="https://www.instagram.com/elgin_cafe" target="_blank" rel="noopener" class="social-link">Instagram <span aria-hidden="true">↗</span></a>
                             <a href="https://www.facebook.com/elgincafeamritsar/" target="_blank" rel="noopener" class="social-link">Facebook <span aria-hidden="true">↗</span></a>
                         </div>
                     </div>
                     <div class="contact-map">
-                        <iframe 
-                            src="about:blank"
-                            data-src="https://maps.google.com/maps?q=Elgin+Cafe,+Ajnala+Road,+Amritsar,+Punjab&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade" title="Elgin Cafe Location">
-                        </iframe>
+                        <iframe src="about:blank" data-src="https://maps.google.com/maps?q=Elgin+Cafe,+Ajnala+Road,+Amritsar,+Punjab&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Elgin Cafe Location"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ══ FOOTER ══ -->
+        <!-- FOOTER -->
         <footer class="footer">
             <div class="container">
                 <div class="footer-inner">
@@ -504,15 +419,12 @@
 
     </main>
 
-    <!-- ═══ PERFORMANCE: Scripts loaded optimally ═══ -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
-    
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="script.js" defer></script>
 
-    <!-- ═══ PERFORMANCE: Lazy-load Google Map iframe + Service Worker ═══ -->
     <script>
         if ('IntersectionObserver' in window) {
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
@@ -531,11 +443,8 @@
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
             if (mapIframe) mapIframe.src = mapIframe.dataset.src;
         }
-
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').catch(() => {});
-            });
+            window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
         }
     </script>
 </body>

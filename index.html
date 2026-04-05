@@ -93,12 +93,15 @@
         .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%;width:100%;display:flex;flex-direction:column;align-items:center}
         .navbar{position:fixed;top:0;left:0;width:100%;padding:2.25rem var(--space-container);z-index:100;transition:padding 0.5s var(--ease-expo),background 0.5s var(--ease-expo)}
         .nav-container{display:flex;justify-content:space-between;align-items:center}
-        .brand{display:flex;flex-direction:column;align-items:flex-start;line-height:1;z-index:101}
-        .brand-logo{height:44px;width:auto;display:block;transition:opacity 0.4s,height 0.5s var(--ease-expo)}
+        .brand{display:flex;flex-direction:row;align-items:center;gap:0.75rem;line-height:1;z-index:101}
+        .brand-logo{height:44px;width:auto;display:block;mix-blend-mode:screen;transition:opacity 0.4s,height 0.5s var(--ease-expo)}
         .brand-logo:hover{opacity:0.75}
         .navbar.scrolled .brand-logo{height:36px}
+        .brand-text{display:flex;flex-direction:column;align-items:flex-start;gap:0.1rem}
+        .brand-name{font-family:var(--font-display);font-size:1.25rem;letter-spacing:0.3em;color:var(--clr-text);font-weight:400}
+        .brand-sub{font-family:var(--font-body);font-size:0.5625rem;letter-spacing:0.4em;color:var(--clr-gold);text-transform:uppercase}
         @media(pointer:coarse){body,a,button,.menu-item{cursor:auto!important}.cursor{display:none!important}}
-        @media(max-width:768px){.brand-logo{height:36px}.navbar.scrolled .brand-logo{height:30px}}
+        @media(max-width:768px){.brand-logo{height:36px}.navbar.scrolled .brand-logo{height:30px}.brand-name{font-size:1rem}}
     </style>
     
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -126,6 +129,10 @@
         <div class="nav-container">
             <a href="#" class="brand">
                 <img src="elgin-logo (1).svg" alt="Elgin Cafe" class="brand-logo" width="160" height="44">
+                <div class="brand-text">
+                    <span class="brand-name">ELGIN</span>
+                    <span class="brand-sub">Cafe</span>
+                </div>
             </a>
             <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>

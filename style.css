@@ -112,9 +112,9 @@ img { display: block; max-width: 100%; }
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.4s var(--ease-expo), 
-                height 0.4s var(--ease-expo),
-                border-color 0.3s;
+    transition: width 0.25s var(--ease-expo),
+                height 0.25s var(--ease-expo),
+                border-color 0.2s;
 }
 
 .cursor.hover-active .cursor-ring {
@@ -304,7 +304,6 @@ h1, h2, h3, h4 {
 .navbar::after {
     content: '';
     position: absolute;
-    inset: 0;
     top: 0; left: 0;
     width: 100%;
     height: 160%;
@@ -498,6 +497,8 @@ section { padding: var(--space-section) 0; }
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Push entire hero content down to clear the navbar */
+    padding-top: 6rem;
 }
 
 .hero-eyebrow {
@@ -1196,6 +1197,7 @@ section { padding: var(--space-section) 0; }
     .brand-logo { height: 36px; }
     .navbar.scrolled .brand-logo { height: 30px; }
     .brand-name { font-size: 1rem; }
+    .hero-content { padding-top: 4rem; }
     .hero-title { font-size: clamp(2.5rem, 11vw, 4rem); }
     .hero-eyebrow { margin-bottom: 1.75rem; }
     .hero-rule { width: 30px; }

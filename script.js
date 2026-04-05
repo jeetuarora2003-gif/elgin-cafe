@@ -39,8 +39,8 @@ let mouseX = 0, mouseY = 0, cX = 0, cY = 0;
 document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
 
 gsap.ticker.add(() => {
-    cX += (mouseX - cX) * 0.12;
-    cY += (mouseY - cY) * 0.12;
+    cX += (mouseX - cX) * 0.28;  // was 0.12 — higher = snappier
+    cY += (mouseY - cY) * 0.28;
     gsap.set(cursor, { x: cX, y: cY });
 });
 

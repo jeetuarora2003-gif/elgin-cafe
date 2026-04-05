@@ -156,7 +156,7 @@ img { display: block; max-width: 100%; }
     opacity: 0;
     transform: translateY(30px);
     line-height: 1;
-    text-indent: 0.5em; /* offset trailing letter-spacing to visually center */
+    text-indent: 0.5em;
 }
 
 .loader-label {
@@ -306,7 +306,6 @@ h1, h2, h3, h4 {
     border-bottom: 1px solid var(--clr-border);
 }
 
-/* Blur on a separate layer to prevent containing-block bugs on mobile */
 .navbar.scrolled::before {
     content: '';
     position: absolute;
@@ -325,26 +324,28 @@ h1, h2, h3, h4 {
 
 .brand {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     line-height: 1;
     z-index: 101;
 }
 
-.brand-name {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    letter-spacing: 0.3em;
-    color: var(--clr-text);
-    font-weight: 400;
+/* ── BRAND LOGO ── */
+.brand-logo {
+    height: 44px;
+    width: auto;
+    display: block;
+    filter: brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(600%) hue-rotate(5deg) brightness(95%);
+    transition: opacity 0.4s var(--ease-expo), filter 0.4s ease;
 }
 
-.brand-sub {
-    font-family: var(--font-body);
-    font-size: 0.5625rem;
-    letter-spacing: 0.4em;
-    color: var(--clr-gold);
-    text-transform: uppercase;
-    padding-right: 0.4em;
+.brand-logo:hover {
+    opacity: 0.7;
+}
+
+/* Shrink logo slightly when navbar is scrolled */
+.navbar.scrolled .brand-logo {
+    height: 36px;
+    transition: height 0.5s var(--ease-expo), opacity 0.4s var(--ease-expo);
 }
 
 .nav-links {
@@ -1093,13 +1094,13 @@ section { padding: var(--space-section) 0; }
     }
     
     #img-pizza {
-        object-position: 70% 100% !important; /* Move a bit left as requested */
-        transform: scale(1.6) !important; /* Subtle zoom out from 2.0 */
+        object-position: 70% 100% !important;
+        transform: scale(1.6) !important;
     }
     
     #img-dessert {
         object-position: center center !important;
-        transform: scale(1.15) !important; /* Subtle zoom for mobile */
+        transform: scale(1.15) !important;
     }
 }
 
@@ -1138,7 +1139,7 @@ section { padding: var(--space-section) 0; }
         inset: 0;
         width: 100vw;
         height: 100vh;
-        background-color: #050F0A; /* Solid background */
+        background-color: #050F0A;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1158,7 +1159,6 @@ section { padding: var(--space-section) 0; }
     }
     .nav-link { font-size: 1.125rem; color: var(--clr-text); }
     
-    /* Lower the logo priority while menu is open so they don't clash */
     .brand { z-index: 101; }
     .nav-links.active ~ .brand { z-index: 1; }
     
@@ -1174,6 +1174,10 @@ section { padding: var(--space-section) 0; }
 
     .menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .menu-btn.active span:nth-child(2) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Logo mobile sizing */
+    .brand-logo { height: 36px; }
+    .navbar.scrolled .brand-logo { height: 30px; }
 
     /* Hero mobile */
     .hero-title { font-size: clamp(2.5rem, 11vw, 4rem); }

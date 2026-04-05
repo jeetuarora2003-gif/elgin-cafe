@@ -125,9 +125,9 @@
         .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%;width:100%;display:flex;flex-direction:column;align-items:center}
         .navbar{position:fixed;top:0;left:0;width:100%;padding:2.25rem var(--space-container);z-index:100;transition:padding 0.5s var(--ease-expo),background 0.5s var(--ease-expo)}
         .nav-container{display:flex;justify-content:space-between;align-items:center}
-        .brand{display:flex;flex-direction:column;line-height:1;z-index:101}
-        .brand-name{font-family:var(--font-display);font-size:1.25rem;letter-spacing:0.3em;color:var(--clr-text);font-weight:400}
-        .brand-sub{font-family:var(--font-body);font-size:0.5625rem;letter-spacing:0.4em;color:var(--clr-gold);text-transform:uppercase;padding-right:0.4em}
+        .brand{display:flex;align-items:center;line-height:1;z-index:101}
+        .brand-logo{height:44px;width:auto;filter:brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(600%) hue-rotate(5deg) brightness(95%);transition:opacity 0.3s ease;display:block}
+        .brand-logo:hover{opacity:0.7}
         @media(pointer:coarse){body,a,button,.menu-item{cursor:auto!important}.cursor{display:none!important}}
     </style>
     
@@ -160,8 +160,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="brand">
-                <span class="brand-name">ELGIN</span>
-                <span class="brand-sub">CAFE</span>
+                <img src="elgin-logo-1.svg" alt="Elgin Cafe" class="brand-logo" width="140" height="44">
             </a>
             <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>
@@ -506,7 +505,6 @@
     </main>
 
     <!-- ═══ PERFORMANCE: Scripts loaded optimally ═══ -->
-    <!-- Preload GSAP (critical for loader animation) -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
     
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
@@ -516,7 +514,6 @@
 
     <!-- ═══ PERFORMANCE: Lazy-load Google Map iframe + Service Worker ═══ -->
     <script>
-        // Lazy-load the Google Maps iframe when the contact section comes into view
         if ('IntersectionObserver' in window) {
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
             if (mapIframe) {
@@ -531,12 +528,10 @@
                 mapObserver.observe(mapIframe);
             }
         } else {
-            // Fallback: load immediately
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
             if (mapIframe) mapIframe.src = mapIframe.dataset.src;
         }
 
-        // Register Service Worker for offline caching
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js').catch(() => {});

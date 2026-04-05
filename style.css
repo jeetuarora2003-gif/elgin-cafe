@@ -322,11 +322,30 @@ h1, h2, h3, h4 {
     align-items: center;
 }
 
+/* ── BRAND: ELGIN on top, CAFE left-aligned below ── */
 .brand {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;   /* CAFE sits at left edge, not centered */
     line-height: 1;
     z-index: 101;
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.3em;
+    color: var(--clr-text);
+    font-weight: 400;
+}
+
+.brand-sub {
+    font-family: var(--font-body);
+    font-size: 0.5625rem;
+    letter-spacing: 0.4em;
+    color: var(--clr-gold);
+    text-transform: uppercase;
+    padding-right: 0.4em;
 }
 
 /* ── BRAND LOGO ── */
@@ -342,7 +361,6 @@ h1, h2, h3, h4 {
     opacity: 0.7;
 }
 
-/* Shrink logo slightly when navbar is scrolled */
 .navbar.scrolled .brand-logo {
     height: 36px;
     transition: height 0.5s var(--ease-expo), opacity 0.4s var(--ease-expo);
@@ -1078,7 +1096,6 @@ section { padding: var(--space-section) 0; }
     letter-spacing: 0.05em;
 }
 
-/* ══ GPU HINTS ══ */
 /* ══ IMAGE-SPECIFIC FRAMING ══ */
 #img-pizza { object-position: 40% 90%; }
 #img-cocktail { object-position: center 45%; }
@@ -1086,18 +1103,15 @@ section { padding: var(--space-section) 0; }
 #img-grand { object-position: center 70%; }
 #img-culinary { object-position: center 70%; }
 
-/* Mobile Resets for Framing */
 @media (max-width: 768px) {
     #img-cocktail, #img-grand, #img-culinary { 
         object-position: center center !important; 
         transform: scale(1) !important;
     }
-    
     #img-pizza {
         object-position: 70% 100% !important;
         transform: scale(1.6) !important;
     }
-    
     #img-dessert {
         object-position: center center !important;
         transform: scale(1.15) !important;
@@ -1132,7 +1146,6 @@ section { padding: var(--space-section) 0; }
 
     section { padding: var(--space-section) 0; }
 
-    /* Nav mobile */
     .navbar { padding: 1.375rem var(--space-container); }
     .nav-links {
         position: fixed;
@@ -1158,33 +1171,19 @@ section { padding: var(--space-section) 0; }
         visibility: visible;
     }
     .nav-link { font-size: 1.125rem; color: var(--clr-text); }
-    
     .brand { z-index: 101; }
     .nav-links.active ~ .brand { z-index: 1; }
-    
-    .nav-btn { 
-        font-size: 0.875rem; 
-        padding: 1rem 2rem;
-        display: inline-block;
-    }
+    .nav-btn { font-size: 0.875rem; padding: 1rem 2rem; display: inline-block; }
     .navbar .nav-btn { display: none; }
     .nav-links .nav-btn { display: inline-block; }
-
     .menu-btn { display: flex; z-index: 1000; }
-
     .menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .menu-btn.active span:nth-child(2) { transform: translateY(-8px) rotate(-45deg); }
-
-    /* Logo mobile sizing */
     .brand-logo { height: 36px; }
     .navbar.scrolled .brand-logo { height: 30px; }
-
-    /* Hero mobile */
     .hero-title { font-size: clamp(2.5rem, 11vw, 4rem); }
     .hero-eyebrow { margin-bottom: 1.75rem; }
     .hero-rule { width: 30px; }
-
-    /* About mobile */
     .about-grid { gap: 2rem; }
     .about-image {
         width: calc(100% + 2.5rem);
@@ -1195,29 +1194,17 @@ section { padding: var(--space-section) 0; }
         border-radius: 0;
     }
     .about-badge { left: 1rem; bottom: -1rem; }
-
-    /* Manifesto mobile */
     .manifesto-text { font-size: clamp(2rem, 8vw, 3.5rem); }
-
-    /* Menu mobile */
     .item-info { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     .item-info p { text-align: left; max-width: 100%; }
     .menu-item:hover .item-info h3,
     .menu-item.active .item-info h3 { transform: translateX(0); }
-
-    /* Stats mobile */
     .stats-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .stat-divider { display: none; }
-
-    /* Gallery mobile */
     .gallery-card { width: 88vw; height: 60vh; top: 15vh; }
     .card-overlay { padding: 1.5rem; }
-
-    /* Contact mobile */
     .contact-map { min-height: 280px; }
     .contact-map iframe { min-height: 280px; }
-
-    /* Footer mobile */
     .footer-inner { flex-direction: column; gap: 2rem; text-align: center; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }

@@ -11,7 +11,6 @@
     <link rel="canonical" href="https://elgincafe.in/">
     <meta name="theme-color" content="#050F0A">
     
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Elgin Cafe">
     <meta property="og:title" content="Elgin Cafe — Amritsar | Wood-Fired Italian & Cocktail Bar">
@@ -22,13 +21,11 @@
     <meta property="og:url" content="https://elgincafe.in/">
     <meta property="og:locale" content="en_IN">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Elgin Cafe — Amritsar">
     <meta name="twitter:description" content="Where evenings earn their reputation. Wood-fired cuisine & signature cocktails.">
     <meta name="twitter:image" content="https://elgincafe.in/wp-content/uploads/2022/04/11.jpg">
     
-    <!-- AEO: Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -49,38 +46,19 @@
             "postalCode": "143001",
             "addressCountry": "IN"
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 31.6811,
-            "longitude": 74.8396
-        },
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                "opens": "12:00",
-                "closes": "23:00"
-            }
-        ],
-        "sameAs": [
-            "https://www.instagram.com/elgin_cafe",
-            "https://www.facebook.com/elgincafeamritsar/"
-        ],
-        "hasMenu": {
-            "@type": "Menu",
-            "url": "https://elgincafe.in/menu.html"
-        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 31.6811, "longitude": 74.8396 },
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "12:00", "closes": "23:00"
+        }],
+        "sameAs": ["https://www.instagram.com/elgin_cafe","https://www.facebook.com/elgincafeamritsar/"],
+        "hasMenu": {"@type": "Menu", "url": "https://elgincafe.in/menu.html"},
         "acceptsReservations": "True",
         "potentialAction": {
             "@type": "ReserveAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://wa.me/917888546281"
-            },
-            "result": {
-                "@type": "Reservation",
-                "name": "Reserve a Table"
-            }
+            "target": {"@type": "EntryPoint", "urlTemplate": "https://wa.me/917888546281"},
+            "result": {"@type": "Reservation", "name": "Reserve a Table"}
         }
     }
     </script>
@@ -89,13 +67,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://elgincafe.in">
-    
     <link rel="preload" as="image" href="https://elgincafe.in/wp-content/uploads/2022/04/11.jpg" fetchpriority="high">
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjQWlhv.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwA.woff2" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
@@ -118,13 +93,9 @@
         .hero-content{position:relative;z-index:2;text-align:center;padding:0 5%;width:100%;display:flex;flex-direction:column;align-items:center}
         .navbar{position:fixed;top:0;left:0;width:100%;padding:2.25rem var(--space-container);z-index:100;transition:padding 0.5s var(--ease-expo),background 0.5s var(--ease-expo)}
         .nav-container{display:flex;justify-content:space-between;align-items:center}
-        /* Brand: show text by default, swap to logo when it loads */
         .brand{display:flex;flex-direction:column;line-height:1;z-index:101}
         .brand-name{font-family:var(--font-display);font-size:1.25rem;letter-spacing:0.3em;color:var(--clr-text);font-weight:400}
         .brand-sub{font-family:var(--font-body);font-size:0.5625rem;letter-spacing:0.4em;color:var(--clr-gold);text-transform:uppercase;padding-right:0.4em}
-        .brand-logo{height:44px;width:auto;display:none;filter:brightness(0) saturate(100%) invert(78%) sepia(38%) saturate(600%) hue-rotate(5deg) brightness(95%);transition:opacity 0.3s ease}
-        .brand-logo.loaded{display:block}
-        .brand-logo.loaded + .brand-text{display:none}
         @media(pointer:coarse){body,a,button,.menu-item{cursor:auto!important}.cursor{display:none!important}}
     </style>
     
@@ -149,18 +120,11 @@
         <div class="cursor-ring"></div>
     </div>
 
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="brand">
-                <!-- Logo loads silently; if it fails, text stays visible -->
-                <img src="elgin-logo-1.svg" alt="Elgin Cafe" class="brand-logo"
-                     onload="this.classList.add('loaded')"
-                     onerror="this.style.display='none'">
-                <span class="brand-text">
-                    <span class="brand-name">ELGIN</span>
-                    <span class="brand-sub">CAFE</span>
-                </span>
+                <span class="brand-name">ELGIN</span>
+                <span class="brand-sub">CAFE</span>
             </a>
             <div class="menu-btn" id="menu-btn" aria-label="Menu">
                 <span></span>
@@ -178,7 +142,6 @@
 
     <main>
 
-        <!-- HERO -->
         <section class="hero" id="home">
             <div class="hero-bg" style="background-image: url('https://elgincafe.in/wp-content/uploads/2022/04/11.jpg'); background-color: #0a1f12;"></div>
             <div class="hero-content">
@@ -202,7 +165,6 @@
             </div>
         </section>
 
-        <!-- MARQUEE -->
         <div class="marquee-section" aria-hidden="true">
             <div class="marquee-track">
                 <div class="marquee-content">
@@ -226,7 +188,6 @@
             </div>
         </div>
 
-        <!-- ABOUT -->
         <section class="about" id="about">
             <div class="container">
                 <div class="about-grid">
@@ -239,7 +200,7 @@
                     </div>
                     <div class="about-image-wrap">
                         <div class="about-image">
-                            <img src="https://elgincafe.in/wp-content/uploads/2022/04/33.jpg" alt="Elgin Cafe Interior — Emerald Green and Gold Decor" class="parallax-img" loading="lazy" width="720" height="960" decoding="async">
+                            <img src="https://elgincafe.in/wp-content/uploads/2022/04/33.jpg" alt="Elgin Cafe Interior" class="parallax-img" loading="lazy" width="720" height="960" decoding="async">
                         </div>
                         <div class="about-badge">
                             <span>Est.</span>
@@ -251,28 +212,17 @@
             </div>
         </section>
 
-        <!-- MANIFESTO -->
         <section class="manifesto">
             <div class="manifesto-inner">
                 <p class="manifesto-text">
-                    <em class="m-word">We</em>
-                    <em class="m-word">didn't</em>
-                    <em class="m-word">build</em>
-                    <em class="m-word">another</em>
-                    <em class="m-word">restaurant.</em>
+                    <em class="m-word">We</em><em class="m-word">didn't</em><em class="m-word">build</em><em class="m-word">another</em><em class="m-word">restaurant.</em>
                 </p>
                 <p class="manifesto-text manifesto-text--gold">
-                    <em class="m-word">We</em>
-                    <em class="m-word">built</em>
-                    <em class="m-word">a</em>
-                    <em class="m-word">reason</em>
-                    <em class="m-word">to</em>
-                    <em class="m-word">stay.</em>
+                    <em class="m-word">We</em><em class="m-word">built</em><em class="m-word">a</em><em class="m-word">reason</em><em class="m-word">to</em><em class="m-word">stay.</em>
                 </p>
             </div>
         </section>
 
-        <!-- MENU -->
         <section class="menu-sec" id="menu">
             <div class="container">
                 <div class="menu-header">
@@ -281,43 +231,25 @@
                 </div>
                 <div class="menu-list">
                     <div class="menu-item">
-                        <div class="item-info">
-                            <h3>Wood-Fired Pizzas</h3>
-                            <p>Hand-tossed, blistered at the edge, honest at the centre.</p>
-                        </div>
-                        <div class="item-accordion-img">
-                            <picture><source srcset="pizza.webp" type="image/webp"><img src="pizza.jpg" alt="Wood-Fired Pizzas" id="img-pizza" loading="lazy" width="600" height="300" decoding="async"></picture>
-                        </div>
+                        <div class="item-info"><h3>Wood-Fired Pizzas</h3><p>Hand-tossed, blistered at the edge, honest at the centre.</p></div>
+                        <div class="item-accordion-img"><picture><source srcset="pizza.webp" type="image/webp"><img src="pizza.jpg" alt="Wood-Fired Pizzas" id="img-pizza" loading="lazy" width="600" height="300" decoding="async"></picture></div>
                         <div class="item-line"></div>
                     </div>
                     <div class="menu-item">
-                        <div class="item-info">
-                            <h3>Signature Cocktails</h3>
-                            <p>Each drink built around a single, well-chosen idea.</p>
-                        </div>
-                        <div class="item-accordion-img">
-                            <picture><source srcset="drink.webp" type="image/webp"><img src="drink.jpg" alt="Signature Cocktails" id="img-cocktail" loading="lazy" width="600" height="300" decoding="async"></picture>
-                        </div>
+                        <div class="item-info"><h3>Signature Cocktails</h3><p>Each drink built around a single, well-chosen idea.</p></div>
+                        <div class="item-accordion-img"><picture><source srcset="drink.webp" type="image/webp"><img src="drink.jpg" alt="Signature Cocktails" id="img-cocktail" loading="lazy" width="600" height="300" decoding="async"></picture></div>
                         <div class="item-line"></div>
                     </div>
                     <div class="menu-item">
-                        <div class="item-info">
-                            <h3>Artisan Desserts</h3>
-                            <p>Made in-house. The kind that make the table go quiet.</p>
-                        </div>
-                        <div class="item-accordion-img">
-                            <picture><source srcset="artisian.webp" type="image/webp"><img src="artisian.jpg.png" alt="Artisan Desserts" id="img-dessert" loading="lazy" width="600" height="300" decoding="async"></picture>
-                        </div>
+                        <div class="item-info"><h3>Artisan Desserts</h3><p>Made in-house. The kind that make the table go quiet.</p></div>
+                        <div class="item-accordion-img"><picture><source srcset="artisian.webp" type="image/webp"><img src="artisian.jpg.png" alt="Artisan Desserts" id="img-dessert" loading="lazy" width="600" height="300" decoding="async"></picture></div>
                         <div class="item-line"></div>
                     </div>
                 </div>
-                <div class="menu-cta">
-                    <a href="menu.html" class="btn secondary">View the Full Menu</a>
-                </div>
+                <div class="menu-cta"><a href="menu.html" class="btn secondary">View the Full Menu</a></div>
             </div>
         </section>
 
-        <!-- STATS -->
         <div class="stats-strip">
             <div class="stats-inner">
                 <div class="stat"><span class="stat-num">2022</span><span class="stat-label">Established</span></div>
@@ -330,62 +262,28 @@
             </div>
         </div>
 
-        <!-- GALLERY -->
         <section class="gallery" id="gallery">
             <div class="gallery-header container">
                 <span class="section-label">Atmosphere</span>
                 <h2 class="section-title">A room that earns <br><em>its keep.</em></h2>
             </div>
             <div class="gallery-stack">
-                <div class="gallery-card">
-                    <div class="card-inner">
-                        <picture><source srcset="grand.webp" type="image/webp"><img src="grand.jpg" alt="Grand Ambiance" id="img-grand" loading="lazy" width="800" height="533" decoding="async"></picture>
-                        <div class="card-overlay"><div class="card-text"><span class="card-num">01</span><h3>Grand Ambiance</h3></div></div>
-                    </div>
-                </div>
-                <div class="gallery-card" style="margin-top: 20vh;">
-                    <div class="card-inner">
-                        <picture><source srcset="signature.webp" type="image/webp"><img src="signature.jpg" alt="Signature Mixology" loading="lazy" width="800" height="533" decoding="async"></picture>
-                        <div class="card-overlay"><div class="card-text"><span class="card-num">02</span><h3>Signature Mixology</h3></div></div>
-                    </div>
-                </div>
-                <div class="gallery-card" style="margin-top: 20vh;">
-                    <div class="card-inner">
-                        <picture><source srcset="culinery.webp" type="image/webp"><img src="culinery.jpg" alt="Culinary Excellence" id="img-culinary" loading="lazy" width="800" height="533" decoding="async"></picture>
-                        <div class="card-overlay"><div class="card-text"><span class="card-num">03</span><h3>Culinary Excellence</h3></div></div>
-                    </div>
-                </div>
-                <div class="gallery-card" style="margin-top: 20vh;">
-                    <div class="card-inner">
-                        <picture><source srcset="coffee.webp" type="image/webp"><img src="coffee.jpg.png" alt="Artisan Coffee" loading="lazy" width="800" height="533" decoding="async"></picture>
-                        <div class="card-overlay"><div class="card-text"><span class="card-num">04</span><h3>Artisan Coffee</h3></div></div>
-                    </div>
-                </div>
-                <div class="gallery-card" style="margin-top: 20vh;">
-                    <div class="card-inner">
-                        <picture><source srcset="evening-patio.webp" type="image/webp"><img src="evening-patio.jpg.jpg" alt="Intimate Evenings" loading="lazy" width="800" height="533" decoding="async"></picture>
-                        <div class="card-overlay"><div class="card-text"><span class="card-num">05</span><h3>Intimate Evenings</h3></div></div>
-                    </div>
-                </div>
+                <div class="gallery-card"><div class="card-inner"><picture><source srcset="grand.webp" type="image/webp"><img src="grand.jpg" alt="Grand Ambiance" id="img-grand" loading="lazy" width="800" height="533" decoding="async"></picture><div class="card-overlay"><div class="card-text"><span class="card-num">01</span><h3>Grand Ambiance</h3></div></div></div></div>
+                <div class="gallery-card" style="margin-top:20vh"><div class="card-inner"><picture><source srcset="signature.webp" type="image/webp"><img src="signature.jpg" alt="Signature Mixology" loading="lazy" width="800" height="533" decoding="async"></picture><div class="card-overlay"><div class="card-text"><span class="card-num">02</span><h3>Signature Mixology</h3></div></div></div></div>
+                <div class="gallery-card" style="margin-top:20vh"><div class="card-inner"><picture><source srcset="culinery.webp" type="image/webp"><img src="culinery.jpg" alt="Culinary Excellence" id="img-culinary" loading="lazy" width="800" height="533" decoding="async"></picture><div class="card-overlay"><div class="card-text"><span class="card-num">03</span><h3>Culinary Excellence</h3></div></div></div></div>
+                <div class="gallery-card" style="margin-top:20vh"><div class="card-inner"><picture><source srcset="coffee.webp" type="image/webp"><img src="coffee.jpg.png" alt="Artisan Coffee" loading="lazy" width="800" height="533" decoding="async"></picture><div class="card-overlay"><div class="card-text"><span class="card-num">04</span><h3>Artisan Coffee</h3></div></div></div></div>
+                <div class="gallery-card" style="margin-top:20vh"><div class="card-inner"><picture><source srcset="evening-patio.webp" type="image/webp"><img src="evening-patio.jpg.jpg" alt="Intimate Evenings" loading="lazy" width="800" height="533" decoding="async"></picture><div class="card-overlay"><div class="card-text"><span class="card-num">05</span><h3>Intimate Evenings</h3></div></div></div></div>
             </div>
         </section>
 
-        <!-- CONTACT -->
         <section class="contact" id="contact">
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-info">
                         <span class="section-label">Find Us</span>
                         <h2 class="section-title">Come as you are. <br><em>Stay as long as you like.</em></h2>
-                        <div class="info-group">
-                            <h4>Address</h4>
-                            <p>On left from Ivy Hospital, Ajnala Rd.,<br>Inside 2nd Lane, D R Enclave,<br>Amritsar, Punjab 143001</p>
-                        </div>
-                        <div class="info-group">
-                            <h4>Reservations</h4>
-                            <p><a href="tel:+917087934000">+91 70879 34000</a></p>
-                            <p><a href="mailto:hello@elgincafe.in">hello@elgincafe.in</a></p>
-                        </div>
+                        <div class="info-group"><h4>Address</h4><p>On left from Ivy Hospital, Ajnala Rd.,<br>Inside 2nd Lane, D R Enclave,<br>Amritsar, Punjab 143001</p></div>
+                        <div class="info-group"><h4>Reservations</h4><p><a href="tel:+917087934000">+91 70879 34000</a></p><p><a href="mailto:hello@elgincafe.in">hello@elgincafe.in</a></p></div>
                         <div class="socials">
                             <a href="https://www.instagram.com/elgin_cafe" target="_blank" rel="noopener" class="social-link">Instagram <span aria-hidden="true">↗</span></a>
                             <a href="https://www.facebook.com/elgincafeamritsar/" target="_blank" rel="noopener" class="social-link">Facebook <span aria-hidden="true">↗</span></a>
@@ -398,17 +296,11 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="footer">
             <div class="container">
                 <div class="footer-inner">
-                    <div class="footer-brand">
-                        <p class="footer-name">ELGIN CAFE</p>
-                        <p class="footer-city">Amritsar, Punjab</p>
-                    </div>
-                    <div class="footer-cta">
-                        <a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve a Table</a>
-                    </div>
+                    <div class="footer-brand"><p class="footer-name">ELGIN CAFE</p><p class="footer-city">Amritsar, Punjab</p></div>
+                    <div class="footer-cta"><a href="https://wa.me/917888546281" target="_blank" rel="noopener" class="btn primary">Reserve a Table</a></div>
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; 2026 Elgin Cafe. All Rights Reserved.</p>
@@ -424,18 +316,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="script.js" defer></script>
-
     <script>
         if ('IntersectionObserver' in window) {
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
             if (mapIframe) {
                 const mapObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            mapIframe.src = mapIframe.dataset.src;
-                            mapObserver.unobserve(entry.target);
-                        }
-                    });
+                    entries.forEach(entry => { if (entry.isIntersecting) { mapIframe.src = mapIframe.dataset.src; mapObserver.unobserve(entry.target); } });
                 }, { rootMargin: '300px' });
                 mapObserver.observe(mapIframe);
             }
@@ -443,9 +329,7 @@
             const mapIframe = document.querySelector('.contact-map iframe[data-src]');
             if (mapIframe) mapIframe.src = mapIframe.dataset.src;
         }
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
-        }
+        if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); }); }
     </script>
 </body>
 </html>

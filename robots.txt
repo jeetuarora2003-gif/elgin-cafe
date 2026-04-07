@@ -1,11 +1,15 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://elgincafe.in/sitemap.xml
+Sitemap: https://elgin-cafetwo.vercel.app/sitemap.xml
 
-# Crawl-delay (optional, be kind to the server)
+# Crawl-delay
 Crawl-delay: 1
 
-# Block admin/system paths
+# Block non-content paths
 Disallow: /cdn-cgi/
+Disallow: /view_images.html
+Disallow: /scrape.js
+Disallow: /optimize-images.js
